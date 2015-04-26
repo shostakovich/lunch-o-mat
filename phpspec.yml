@@ -5,3 +5,11 @@ suites:
         src_path: app
         spec_path: app
         spec_prefix: spec
+
+extensions:
+    - PhpSpec\Laravel\Extension\LaravelExtension
+
+laravel_extension:
+    testing_environment: 'testing'
+
+formatter.name: pretty

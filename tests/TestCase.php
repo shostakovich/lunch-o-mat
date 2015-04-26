@@ -1,12 +1,9 @@
 <?php
 
-class TestCase extends Illuminate\Foundation\Testing\TestCase {
 
-	/**
-	 * Creates the application.
-	 *
-	 * @return \Illuminate\Foundation\Application
-	 */
+ini_set('display_errors', true);
+
+class TestCase extends Illuminate\Foundation\Testing\TestCase {
 	public function createApplication()
 	{
 		$app = require __DIR__.'/../bootstrap/app.php';
@@ -15,5 +12,17 @@ class TestCase extends Illuminate\Foundation\Testing\TestCase {
 
 		return $app;
 	}
+
+    public function setUp()
+    {
+        parent::setUp();
+        DB::beginTransaction();
+    }
+
+    public function tearDown()
+    {
+        DB::rollBack();
+        parent::tearDown();
+    }
 
 }
