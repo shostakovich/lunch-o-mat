@@ -3,6 +3,7 @@
 
 ini_set('display_errors', true);
 
+
 class TestCase extends Illuminate\Foundation\Testing\TestCase {
 	public function createApplication()
 	{

@@ -4,19 +4,30 @@ class LunchScheduler {
         $this->lunch = $lunch;
     }
 
-    public function schedule(){
+    public function schedule()
+    {
         $groups = [];
         $participants = $this->lunch->participants()->get();
 
         $participants->shuffle();
-
-        if($participants->count() == 3)
-            $groups[0] = $participants;
-        elseif($participants->count() == 6)
+        $numParticipants = $participants->count();
+        if ($numParticipants % 3 == 0)
         {
-            $groups[0] = $participants->slice(0, 3);
-            $groups[1] = $participants->slice(3, 6);
+            for($i=0; $i < ($numParticipants / 3); $i++)
+            {
+                $offset = $i*3;
+                $length = ($i+1)*3;
+
+                $groups[$i] = $participants->slice($offset, $length);
+            }
         }
+        elseif ($numParticipants % 3 == 1)
+        {
+            $groups[0] = $participants->slice(0, 2);
+            $groups[1] = $participants->slice(2, 2);
+
+        }
+
         return $groups;
     }
 }
