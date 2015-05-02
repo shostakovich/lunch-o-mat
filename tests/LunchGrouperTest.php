@@ -1,8 +1,8 @@
 <?php
 use Laracasts\TestDummy\Factory;
-use App\LunchScheduler;
+use App\LunchGrouper;
 
-class LunchSchedulerTest extends TestCase
+class LunchGrouperTest extends TestCase
 {
     public function testSchedulesEmptyLunch()
     {
@@ -61,8 +61,8 @@ class LunchSchedulerTest extends TestCase
         foreach($participants as $participant)
             $lunch->addParticipant($participant);
 
-        $scheduler = new LunchScheduler($lunch);
-        $groups = $scheduler->schedule();
+        $grouper = new LunchGrouper($lunch);
+        $groups = $grouper->group();
         return $groups;
     }
     
