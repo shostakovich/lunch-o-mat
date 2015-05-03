@@ -21,7 +21,9 @@ class LunchGrouper
 
     private function fillNormalGroups()
     {
-        for ($i = 0; $i < $this->numberOfNormalGroups(); $i++) {
+        $groups = $this->numberOfNormalGroups();
+
+        for ($i = 0; $i < $groups; $i++) {
             $offset = $i * self::GROUP_SIZE;
             $this->groups[$i] = $this->participants->slice($offset, self::GROUP_SIZE);
         }
@@ -41,7 +43,9 @@ class LunchGrouper
     private function fillSmallGroups()
     {
         $smallGroupSize = 2;
-        for ($i = 0; $i < $this->numberOfSmallGroups(); $i++) {
+        $groups = $this->numberOfSmallGroups();
+
+        for ($i = 0; $i < $groups; $i++) {
             $offset = ($i + 1) * -$smallGroupSize;
 
             $this->groups[$this->numberOfNormalGroups() + $i] = $this->participants->slice($offset, $smallGroupSize);

@@ -12,7 +12,7 @@ class LunchTest extends TestCase {
             ['starts_at' => $start_time, 'duration_in_minutes' => $duration]
         );
 
-        $this->assertTrue($lunch->ends_at()->eq($start_time->addMinutes(60)));
+        $this->assertTrue($lunch->endsAt()->eq($start_time->addMinutes(60)));
     }
 
     public function testAddingOfParticipant()
