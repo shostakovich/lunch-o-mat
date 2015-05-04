@@ -2,9 +2,9 @@
 
 
 ini_set('display_errors', true);
+use Laracasts\Integrated\Extensions\Laravel as IntegrationTest;
 
-
-class TestCase extends Illuminate\Foundation\Testing\TestCase {
+class TestCase extends IntegrationTest {
 	public function createApplication()
 	{
 		$app = require __DIR__.'/../bootstrap/app.php';
@@ -25,5 +25,4 @@ class TestCase extends Illuminate\Foundation\Testing\TestCase {
         DB::rollBack();
         parent::tearDown();
     }
-
 }
