@@ -10,7 +10,8 @@
 </head>
 <body>
     <div id="l-wrapper">
-        @yield('content')
+	    @include('partials/_flash')
+	    @yield('content')
     </div>
 </body>
 </html>

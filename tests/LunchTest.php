@@ -1,6 +1,7 @@
 <?php
 use Carbon\Carbon;
 use Laracasts\TestDummy\Factory;
+use App\Lunch;
 
 class LunchTest extends TestCase {
     public function testEndTimeCalculation()
@@ -24,4 +25,20 @@ class LunchTest extends TestCase {
 
         $this->assertEquals($lunch->participants()->first()->id, $user->id);
     }
+
+	public function testLunchHasOneCircle()
+	{
+		$circle = Factory::create('App\Lunch')->circle;
+
+		$this->assertInstanceOf('App\Circle', $circle);
+	}
+
+	public function testUpcomingLunches()
+	{
+		$lunch_today = Factory::create('App\Lunch', ['starts_at' => Carbon::now()->endOfDay()]);
+		$lunch_tomorrow = Factory::create('App\Lunch', ['starts_at' => Carbon::now()->tomorrow()]);
+
+		$this->assertEquals(Lunch::upcoming()->count(), 1);
+		$this->assertEquals(Lunch::upcoming()->first(), $lunch_tomorrow);
+	}
 }

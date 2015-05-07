@@ -3,7 +3,8 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateLunchTable extends Migration {
+class CreateLunchTable extends Migration
+{
 
 	/**
 	 * Run the migrations.
@@ -12,13 +13,12 @@ class CreateLunchTable extends Migration {
 	 */
 	public function up()
 	{
-		Schema::create('lunches', function(Blueprint $table)
-		{
+		Schema::create('lunches', function (Blueprint $table) {
 			$table->increments('id');
-            $table->dateTime('starts_at');
-            $table->tinyInteger('duration_in_minutes');
-            $table->timestamps();
-        });
+			$table->dateTime('starts_at');
+			$table->tinyInteger('duration_in_minutes')->unsigned();
+			$table->timestamps();
+		});
 	}
 
 	/**

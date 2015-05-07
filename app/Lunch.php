@@ -6,6 +6,17 @@ use Illuminate\Database\Eloquent\Model;
 class Lunch extends Model {
     protected $table = 'lunches';
     protected $fillable = array('starts_at', 'duration_in_minutes');
+	protected $dates = ['starts_at'];
+
+	public function scopeUpcoming($query)
+	{
+		$query->where('starts_at', '>', Carbon::now()->endOfDay());
+	}
+
+	public function isExpired()
+	{
+		return $this->starts_at <= Carbon::now()->endOfDay();
+	}
 
     public function endsAt()
     {
@@ -21,4 +32,14 @@ class Lunch extends Model {
     {
         return $this->belongsToMany('App\User');
     }
+
+	public function circle()
+	{
+		return $this->belongsTo('App\Circle');
+	}
+
+	public function isSignedUp(User $user)
+	{
+		return 0 < $this->participants()->where(['user_id' => $user->id])->count();
+	}
 }

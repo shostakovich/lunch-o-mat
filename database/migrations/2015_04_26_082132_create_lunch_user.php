@@ -3,7 +3,8 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateLunchUser extends Migration {
+class CreateLunchUser extends Migration
+{
 
 	/**
 	 * Run the migrations.
@@ -12,12 +13,14 @@ class CreateLunchUser extends Migration {
 	 */
 	public function up()
 	{
-		Schema::create('lunch_user', function(Blueprint $table)
-		{
+		Schema::create('lunch_user', function (Blueprint $table) {
 			$table->increments('id');
-            $table->integer('user_id');
-            $table->integer('lunch_id');
+			$table->unsignedInteger('user_id');
+			$table->unsignedInteger('lunch_id');
 			$table->timestamps();
+
+			$table->foreign('user_id')->references('id')->on('users');
+			$table->foreign('lunch_id')->references('id')->on('lunches');
 		});
 	}
 
