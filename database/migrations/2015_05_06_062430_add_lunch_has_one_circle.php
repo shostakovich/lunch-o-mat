@@ -9,9 +9,6 @@ class AddLunchHasOneCircle extends Migration {
 		Schema::table('lunches', function(Blueprint $table)
 		{
 			$table->unsignedInteger('circle_id');
-
-			$table->foreign('circle_id')->references('id')->on('circles');
-
 		});
 	}
 
@@ -19,7 +16,6 @@ class AddLunchHasOneCircle extends Migration {
 	{
 		Schema::table('lunches', function(Blueprint $table)
 		{
-			$table->dropForeign('lunches_circle_id_foreign');
 			$table->dropColumn('circle_id');
 		});
 	}

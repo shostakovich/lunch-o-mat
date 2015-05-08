@@ -5,7 +5,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Lunch extends Model {
     protected $table = 'lunches';
-    protected $fillable = array('starts_at', 'duration_in_minutes');
+    protected $fillable = array('starts_at', 'circle_id', 'duration_in_minutes');
 	protected $dates = ['starts_at'];
 
 	public function scopeUpcoming($query)

@@ -26,4 +26,17 @@ class TestCase extends IntegrationTest {
         DB::rollBack();
         parent::tearDown();
     }
+
+	protected function assertRequiresLogin($uri)
+	{
+		$this->visit($uri);
+		$this->onPage('/auth/login');
+	}
+
+	protected function login()
+	{
+		$user = Factory::create('App\User');
+		Auth::login($user);
+		return $user;
+	}
 }

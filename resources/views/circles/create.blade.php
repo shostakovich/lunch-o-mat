@@ -5,20 +5,9 @@
 @section('content')
     <h1>Create a new circle</h1>
 
-    {!! Form::open(['url' => '/circles', 'method' => 'post']) !!}
-        <div>
-            {!! Form::label('name', 'Name:') !!}
-            {!! Form::text('name') !!}
-	        {!! $errors->first('name') !!}
-        </div>
-        <div>
-            {!! Form::label('description', 'Description:') !!}
-            {!! Form::textArea('description') !!}
-	        {!! $errors->first('description') !!}
-        </div>
-
-        <div>
-            {!! Form::submit('Create Circle') !!}
-        </div>
-    {!! Form::close() !!}
+    {!! BootForm::open()->post()->action('/circles') !!}
+        {!! BootForm::text('Name', 'name') !!}
+        {!! BootForm::textarea('Description', 'description') !!}
+        {!! BootForm::submit('Create Circle') !!}
+    {!! BootForm::close() !!}
 @stop

@@ -4,8 +4,92 @@
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "2475b97e5c512b332626aba6f738eceb",
+    "hash": "4aef37c65f4633c35903ea8edb10e24b",
     "packages": [
+        {
+            "name": "adamwathan/bootforms",
+            "version": "v0.6.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/adamwathan/bootforms.git",
+                "reference": "33c29ca5cb703094dc8432c6cc6affff1dd4f2bd"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/adamwathan/bootforms/zipball/33c29ca5cb703094dc8432c6cc6affff1dd4f2bd",
+                "reference": "33c29ca5cb703094dc8432c6cc6affff1dd4f2bd",
+                "shasum": ""
+            },
+            "require": {
+                "adamwathan/form": "0.6.*",
+                "php": ">=5.4.0"
+            },
+            "require-dev": {
+                "mockery/mockery": "0.9.*",
+                "phpunit/phpunit": "3.7.*",
+                "satooshi/php-coveralls": "dev-master"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-0": {
+                    "AdamWathan\\BootForms": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Adam Wathan",
+                    "email": "adam.wathan@gmail.com"
+                }
+            ],
+            "description": "Just a Formbuilder with some Bootstrap specific conveniences. Remembers old input, retrieves error messages and handles all your boilerplate Bootstrap markup automatically.",
+            "time": "2015-04-30 18:05:32"
+        },
+        {
+            "name": "adamwathan/form",
+            "version": "v0.6.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/adamwathan/form.git",
+                "reference": "cff7aff5a7f7e213091053d2134d3db0d605f2fc"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/adamwathan/form/zipball/cff7aff5a7f7e213091053d2134d3db0d605f2fc",
+                "reference": "cff7aff5a7f7e213091053d2134d3db0d605f2fc",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.0"
+            },
+            "require-dev": {
+                "illuminate/support": "4.*",
+                "mockery/mockery": "~0.9",
+                "phpunit/phpunit": "3.7.*",
+                "satooshi/php-coveralls": "dev-master"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-0": {
+                    "AdamWathan\\Form": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Adam Wathan",
+                    "email": "adam.wathan@gmail.com"
+                }
+            ],
+            "description": "A basic framework agnostic form building package with a few extra niceties like remembering old input and retrieving error messages.",
+            "time": "2015-04-30 17:54:36"
+        },
         {
             "name": "classpreloader/classpreloader",
             "version": "1.3.0",
@@ -410,16 +494,16 @@
         },
         {
             "name": "laravel/framework",
-            "version": "v5.0.28",
+            "version": "5.0.30",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravel/framework.git",
-                "reference": "06a09429322cf53e5bd4587db1060f02a291562e"
+                "reference": "c7ffbf1fd4895ac4cdac551265d635d995346d97"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel/framework/zipball/06a09429322cf53e5bd4587db1060f02a291562e",
-                "reference": "06a09429322cf53e5bd4587db1060f02a291562e",
+                "url": "https://api.github.com/repos/laravel/framework/zipball/c7ffbf1fd4895ac4cdac551265d635d995346d97",
+                "reference": "c7ffbf1fd4895ac4cdac551265d635d995346d97",
                 "shasum": ""
             },
             "require": {
@@ -532,20 +616,20 @@
                 "framework",
                 "laravel"
             ],
-            "time": "2015-04-21 01:44:32"
+            "time": "2015-05-08 19:11:13"
         },
         {
             "name": "laravelcollective/html",
-            "version": "v5.0.2",
+            "version": "v5.0.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/LaravelCollective/html.git",
-                "reference": "9af203053815cb12c9b8307e8367153c84fdd4b7"
+                "reference": "c55fda58b1a9a1b58bd04f97e0fb9ebc238a0a94"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/LaravelCollective/html/zipball/9af203053815cb12c9b8307e8367153c84fdd4b7",
-                "reference": "9af203053815cb12c9b8307e8367153c84fdd4b7",
+                "url": "https://api.github.com/repos/LaravelCollective/html/zipball/c55fda58b1a9a1b58bd04f97e0fb9ebc238a0a94",
+                "reference": "c55fda58b1a9a1b58bd04f97e0fb9ebc238a0a94",
                 "shasum": ""
             },
             "require": {
@@ -582,7 +666,7 @@
                     "email": "adam@laravelcollective.com"
                 }
             ],
-            "time": "2015-03-10 15:59:48"
+            "time": "2015-05-06 14:23:37"
         },
         {
             "name": "league/flysystem",
@@ -786,21 +870,21 @@
         },
         {
             "name": "nesbot/carbon",
-            "version": "1.18.0",
+            "version": "1.19.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/briannesbitt/Carbon.git",
-                "reference": "99e2f69f7bdc2cc4334b2d00f1e0ba450623ea36"
+                "reference": "68868e0b02d2d803d0052a59d4e5003cccf87320"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/briannesbitt/Carbon/zipball/99e2f69f7bdc2cc4334b2d00f1e0ba450623ea36",
-                "reference": "99e2f69f7bdc2cc4334b2d00f1e0ba450623ea36",
+                "url": "https://api.github.com/repos/briannesbitt/Carbon/zipball/68868e0b02d2d803d0052a59d4e5003cccf87320",
+                "reference": "68868e0b02d2d803d0052a59d4e5003cccf87320",
                 "shasum": ""
             },
             "require": {
                 "php": ">=5.3.0",
-                "symfony/translation": "2.6.*"
+                "symfony/translation": "~2.6"
             },
             "require-dev": {
                 "phpunit/phpunit": "~4.0"
@@ -829,20 +913,20 @@
                 "datetime",
                 "time"
             ],
-            "time": "2015-03-26 03:05:57"
+            "time": "2015-05-09 03:23:44"
         },
         {
             "name": "nikic/php-parser",
-            "version": "v1.2.2",
+            "version": "v1.3.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/nikic/PHP-Parser.git",
-                "reference": "08f97eb4efa029e2fafb6d8c98b71731bf0cf621"
+                "reference": "dff239267fd1befa1cd40430c9ed12591aa720ca"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/nikic/PHP-Parser/zipball/08f97eb4efa029e2fafb6d8c98b71731bf0cf621",
-                "reference": "08f97eb4efa029e2fafb6d8c98b71731bf0cf621",
+                "url": "https://api.github.com/repos/nikic/PHP-Parser/zipball/dff239267fd1befa1cd40430c9ed12591aa720ca",
+                "reference": "dff239267fd1befa1cd40430c9ed12591aa720ca",
                 "shasum": ""
             },
             "require": {
@@ -852,7 +936,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "1.2-dev"
+                    "dev-master": "1.3-dev"
                 }
             },
             "autoload": {
@@ -874,7 +958,7 @@
                 "parser",
                 "php"
             ],
-            "time": "2015-04-03 14:33:59"
+            "time": "2015-05-02 15:40:40"
         },
         {
             "name": "psr/log",
@@ -1858,16 +1942,16 @@
         },
         {
             "name": "fabpot/goutte",
-            "version": "v2.0.3",
+            "version": "v2.0.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/FriendsOfPHP/Goutte.git",
-                "reference": "65ab61eae03d670b93a9044ad2328eb81aa1bde5"
+                "reference": "0ad3ee6dc2d0aaa832a80041a1e09bf394e99802"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/FriendsOfPHP/Goutte/zipball/65ab61eae03d670b93a9044ad2328eb81aa1bde5",
-                "reference": "65ab61eae03d670b93a9044ad2328eb81aa1bde5",
+                "url": "https://api.github.com/repos/FriendsOfPHP/Goutte/zipball/0ad3ee6dc2d0aaa832a80041a1e09bf394e99802",
+                "reference": "0ad3ee6dc2d0aaa832a80041a1e09bf394e99802",
                 "shasum": ""
             },
             "require": {
@@ -1903,7 +1987,7 @@
             "keywords": [
                 "scraper"
             ],
-            "time": "2014-11-28 09:48:17"
+            "time": "2015-05-05 21:14:57"
         },
         {
             "name": "fzaninotto/faker",
@@ -2172,16 +2256,16 @@
         },
         {
             "name": "laracasts/integrated",
-            "version": "0.15.3",
+            "version": "0.15.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laracasts/Integrated.git",
-                "reference": "27037a3479777727bc93601b9f0a5054916f51ac"
+                "reference": "4f4eed795adbbfa6fa4ff136acd534ac8aa0f779"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laracasts/Integrated/zipball/27037a3479777727bc93601b9f0a5054916f51ac",
-                "reference": "27037a3479777727bc93601b9f0a5054916f51ac",
+                "url": "https://api.github.com/repos/laracasts/Integrated/zipball/4f4eed795adbbfa6fa4ff136acd534ac8aa0f779",
+                "reference": "4f4eed795adbbfa6fa4ff136acd534ac8aa0f779",
                 "shasum": ""
             },
             "require": {
@@ -2215,7 +2299,7 @@
                 "laravel",
                 "testing"
             ],
-            "time": "2015-04-28 23:55:02"
+            "time": "2015-05-06 20:44:26"
         },
         {
             "name": "laracasts/testdummy",

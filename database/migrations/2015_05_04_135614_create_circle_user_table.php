@@ -11,10 +11,6 @@ class CreateCircleUserTable extends Migration {
 			$table->unsignedInteger('circle_id');
 			$table->unsignedInteger('user_id');
 			$table->timestamps();
-
-			$table->foreign('circle_id')->references('id')->on('circles');
-			$table->foreign('user_id')->references('id')->on('users');
-
 		});
 
 	}

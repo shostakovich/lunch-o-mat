@@ -146,6 +146,8 @@ return [
 		'App\Providers\EventServiceProvider',
 		'App\Providers\RouteServiceProvider',
 
+		'AdamWathan\BootForms\BootFormsServiceProvider'
+
 	],
 
 	/*
@@ -166,6 +168,7 @@ return [
 		'Auth'      => 'Illuminate\Support\Facades\Auth',
 		'Blade'     => 'Illuminate\Support\Facades\Blade',
 		'Bus'       => 'Illuminate\Support\Facades\Bus',
+		'BootForm' => 'AdamWathan\BootForms\Facades\BootForm',
 		'Cache'     => 'Illuminate\Support\Facades\Cache',
 		'Config'    => 'Illuminate\Support\Facades\Config',
 		'Cookie'    => 'Illuminate\Support\Facades\Cookie',

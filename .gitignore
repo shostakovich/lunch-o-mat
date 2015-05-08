@@ -3,3 +3,5 @@
 .env
 /.idea
 /tests/logs
+.DS_STORE
+*.css.map
