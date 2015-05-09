@@ -9,9 +9,11 @@
     <link href="{{ asset('/css/app.css') }}" rel="stylesheet">
 </head>
 <body>
-    <div id="l-wrapper">
-	    @include('partials/_flash')
-	    @yield('content')
-    </div>
+	@include('partials/_navigation')
+
+	<main role="main" class="container">
+		@include('partials/_flash')
+		@yield('content')
+	</main>
 </body>
 </html>

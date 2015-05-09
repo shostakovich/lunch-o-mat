@@ -2,10 +2,16 @@
 use Laracasts\TestDummy\Factory;
 
 class CirclesFeaturesTest extends TestCase {
+	public function testCircleListRequiresLogin()
+	{
+		$this->assertRequiresLogin('/circles');
+	}
+
 	public function testCircleListShowsAllCircles()
 	{
 		$circle = Factory::create('App\Circle');
 
+		$this->login();
 		$this->visit('/circles');
 
 		$this->andSee($circle->name);
@@ -16,6 +22,7 @@ class CirclesFeaturesTest extends TestCase {
 	{
 		$circle = Factory::attributesFor('App\Circle');
 
+		$this->login();
 		$this->visit('/circles/create');
 		$this->submitForm('Create Circle', $circle);
 
@@ -28,6 +35,7 @@ class CirclesFeaturesTest extends TestCase {
 	{
 		$invalid_circle = [];
 
+		$this->login();
 		$this->visit('/circles/create');
 		$this->submitForm('Create Circle', $invalid_circle);
 

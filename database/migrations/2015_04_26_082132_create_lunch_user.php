@@ -18,9 +18,6 @@ class CreateLunchUser extends Migration
 			$table->unsignedInteger('user_id');
 			$table->unsignedInteger('lunch_id');
 			$table->timestamps();
-
-			$table->foreign('user_id')->references('id')->on('users');
-			$table->foreign('lunch_id')->references('id')->on('lunches');
 		});
 	}
 

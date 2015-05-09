@@ -12,14 +12,14 @@ class LunchFeaturesTest extends TestCase
 
     public function testLunchOverviewAllowsUserAccess()
     {
-	    $this->signedInUser();
+	    $this->login();
 	    $this->visit('/lunches');
 	    $this->onPage('/lunches');
     }
 
 	public function testLunchOverviewShowsOnlyLunchesInJoinedCircles()
 	{
-		$user = $this->signedInUser();
+		$user = $this->login();
 
 		$visible_lunch = $this->buildLunch($user);
 		$invisible_lunch = $this->buildLunch();
@@ -31,21 +31,13 @@ class LunchFeaturesTest extends TestCase
 
 	public function testSignupForLunch()
 	{
-		$user = $this->signedInUser();
-		$lunch = $this->buildLunch($user);
+		$user = $this->login();
+		$this->buildLunch($user);
 
 		$this->visit('/lunches');
-
 		$this->press('Signup');
 
 		$this->andSee('You succesfully signed up!');
-	}
-
-	private function signedInUser()
-	{
-		$user = Factory::create('App\User');
-		Auth::login($user);
-		return $user;
 	}
 
 	private function buildLunch(User $visible_to_user = null)
