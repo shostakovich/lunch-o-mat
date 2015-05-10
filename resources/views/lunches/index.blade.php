@@ -8,11 +8,6 @@
         </h1>
     </div>
 
-
-    <div class="alert alert-warning" role="alert">
-        <strong>Warning!</strong> You might have to socialize..
-    </div>
-
 	@foreach($circles as $circle)
         <div class="panel panel-default">
             <div class="panel-heading">

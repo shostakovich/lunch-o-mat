@@ -1,11 +1,20 @@
 @extends('app')
 
 @section('content')
-    <h1>All Circles</h1>
+    <div class="page-header">
+        <h1>
+            Join a circle!
+            <small>Great people.</small>
+        </h1>
+    </div>
+
     @foreach($circles as $circle)
-    <article>
-        <h1>{{$circle->name}}</h1>
-        <p>{{$circle->description}}</p>
-    </article>
+    <div class="panel panel-primary">
+        <div class="panel-heading">{{$circle->name}}</div>
+        <div class="panel-body">
+            <div class="well well-sm">{{$circle->description}}</div>
+        </div>
+        <div class="panel-footer">Panel footer</div>
+    </div>
     @endforeach
 @stop
