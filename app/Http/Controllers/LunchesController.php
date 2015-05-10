@@ -5,14 +5,15 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
 use App\Lunch;
 use App\Services\LunchSchedulingService;
-use App\Services\LunchSignupService;
+use App\Services\RSVPService;
 
 class LunchesController extends Controller {
     public function index(Request $request)
     {
-	    $circles = $request->user()->circles;
+        $user = $request->user();
+	    $circles = $user->circles;
 
-        return view('lunches.index', compact('circles'));
+        return view('lunches.index', compact('circles', 'user'));
     }
 
 	public function create(Request $request)
@@ -28,7 +29,7 @@ class LunchesController extends Controller {
 
         if($service->schedule())
         {
-            return Redirect::to("/lunches")->withNotification('You scheduled a lunch!');
+            return Redirect::to("/lunches")->withSuccess('You scheduled a lunch!');
         } else {
             return Redirect::back()->withErrors($service->getErrors());
         }
@@ -39,14 +40,21 @@ class LunchesController extends Controller {
 		$user = $request->user();
 		$lunch = Lunch::find($id);
 
-		$service = new LunchSignupService($lunch, $user);
+		$service = new RSVPService($lunch, $user);
 
-		if($service->signUp())
-		{
-			return Redirect::back()->withNotification('You succesfully signed up!');
-		} else {
-			return Redirect::back()->withNotification('Signup failed');
-		}
+		if($service->rsvp())
+			return Redirect::back()->withSuccess('You succesfully signed up!');
+		else
+			return Redirect::back()->withError('Signup failed');
 	}
 
+    public function cancel($id, Request $request)
+    {
+        $lunch = Lunch::find($id);
+        $user = $request->user();
+        $service = new RSVPService($lunch, $user);
+
+       if($service->rsvp(false))
+           return Redirect::back()->withSuccess('You will not take part in this lunch!');
+    }
 }

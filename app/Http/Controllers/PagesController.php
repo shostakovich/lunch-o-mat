@@ -2,13 +2,8 @@
 namespace App\Http\Controllers;
 
 class PagesController extends Controller {
-    public function __construct()
+    public function home()
     {
-        $this->middleware('guest');
-    }
-
-    public function homepage()
-    {
-        return view('pages.homepage');
+       return view('pages.home');
     }
 }

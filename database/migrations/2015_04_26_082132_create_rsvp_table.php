@@ -3,32 +3,21 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateLunchUser extends Migration
+class CreateRsvpTable extends Migration
 {
-
-	/**
-	 * Run the migrations.
-	 *
-	 * @return void
-	 */
 	public function up()
 	{
-		Schema::create('lunch_user', function (Blueprint $table) {
+		Schema::create('rsvps', function (Blueprint $table) {
 			$table->increments('id');
 			$table->unsignedInteger('user_id');
 			$table->unsignedInteger('lunch_id');
+            $table->enum('rsvp', array('yes', 'no'))->default('yes');
 			$table->timestamps();
 		});
 	}
 
-	/**
-	 * Reverse the migrations.
-	 *
-	 * @return void
-	 */
 	public function down()
 	{
-		Schema::drop('lunch_user');
+		Schema::drop('rsvps');
 	}
-
 }

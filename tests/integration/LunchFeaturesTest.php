@@ -29,7 +29,7 @@ class LunchFeaturesTest extends TestCase
 		$this->andNotSee(sprintf('(%s min.)', $invisible_lunch->duration_in_minutes));
 	}
 
-	public function testSignupForLunch()
+	public function testRSVPYesForLunch()
 	{
 		$user = $this->login();
 		$this->buildLunch($user);
@@ -39,6 +39,18 @@ class LunchFeaturesTest extends TestCase
 
 		$this->andSee('You succesfully signed up!');
 	}
+
+    public function testRSVPNo()
+    {
+        $user = $this->login();
+        $lunch = $this->buildLunch($user);
+        $lunch->participants()->save($user);
+
+        $this->visit('/lunches');
+        $this->press('Cancel');
+
+        $this->andSee('You will not take part in this lunch!');
+    }
 
 	private function buildLunch(User $visible_to_user = null)
 	{
