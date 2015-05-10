@@ -1,3 +1,3 @@
-<div class="alert" role="alert">
-	{{ Session::get('notification') }}
-</div>
+@if(Session::has('notification'))
+    <div class="alert" role="alert">{{ Session::get('notification') }}</div>
+@endif
