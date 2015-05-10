@@ -10,9 +10,10 @@ use App\Services\LunchSignupService;
 class LunchesController extends Controller {
     public function index(Request $request)
     {
-	    $circles = $request->user()->circles;
+        $user = $request->user();
+	    $circles = $user->circles;
 
-        return view('lunches.index', compact('circles'));
+        return view('lunches.index', compact('circles', 'user'));
     }
 
 	public function create(Request $request)
