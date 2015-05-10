@@ -2,10 +2,10 @@
 
 use App\Lunch;
 use App\User;
-use App\LunchUser;
-use App\Validators\LunchSignupValidator;
+use App\RSVP;
+use App\Validators\RSVPValidator;
 
-class LunchSignupService {
+class RSVPCreatorService {
 	protected $lunch;
 	protected $user;
 	protected $validation;
@@ -14,13 +14,13 @@ class LunchSignupService {
 	{
 		$this->lunch = $lunch;
 		$this->user = $user;
-		$this->validation = new LunchSignupValidator($lunch, $user);
+		$this->validation = new RSVPValidator($lunch, $user);
 	}
 
 	public function signUp()
 	{
 		if ($this->validation->passes()) {
-			LunchUser::create([
+			RSVP::create([
 				'user_id' => $this->user->id,
 				'lunch_id' => $this->lunch->id
 			]);

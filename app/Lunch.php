@@ -30,7 +30,7 @@ class Lunch extends Model {
 
     public function participants()
     {
-        return $this->belongsToMany('App\User');
+        return $this->belongsToMany('App\User', 'rsvps');
     }
 
 	public function circle()

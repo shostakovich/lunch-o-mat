@@ -1,9 +1,9 @@
 <?php
 use Laracasts\TestDummy\Factory;
-use App\Services\LunchSignupService;
+use App\Services\RSVPCreatorService;
 use Carbon\Carbon;
 
-class LunchSignupServiceTest extends TestCase {
+class RSVPCreatorServiceTest extends TestCase {
 	public function setUp()
 	{
 		parent::setUp();
@@ -12,18 +12,18 @@ class LunchSignupServiceTest extends TestCase {
 		$this->lunch->circle->members()->save($this->user);
 	}
 
-	public function testCreatesValidSignup()
+	public function testCreatesValidRSVP()
 	{
-		$service = new LunchSignupService($this->lunch, $this->user);
+		$service = new RSVPCreatorService($this->lunch, $this->user);
 
 		$this->assertTrue($service->signUp());
 		$this->assertTrue($this->lunch->isSignedUp($this->user));
 	}
 
-	public function testPreventsSignupIfUserIsNotInCircle()
+	public function testNoRSVPIfUserIsNotInCircle()
 	{
 		$this->lunch = Factory::create('App\Lunch');
-		$service = new LunchSignupService($this->lunch, $this->user);
+		$service = new RSVPCreatorService($this->lunch, $this->user);
 
 		$this->assertFalse($service->signUp());
 
@@ -32,10 +32,10 @@ class LunchSignupServiceTest extends TestCase {
 		$this->assertFalse($this->lunch->isSignedUp($this->user));
 	}
 
-	public function testPreventsSignupWhenLunchExpired()
+	public function testPreventsRSVPWhenLunchExpired()
 	{
 		$this->lunch->starts_at = Carbon::yesterday();
-		$service = new LunchSignupService($this->lunch, $this->user);
+		$service = new RSVPCreatorService($this->lunch, $this->user);
 
 		$this->assertFalse($service->signUp());
 
@@ -44,11 +44,11 @@ class LunchSignupServiceTest extends TestCase {
 		$this->assertFalse($this->lunch->isSignedUp($this->user));
 	}
 
-	public function testPreventsDuplicateSignups()
+	public function testPreventsDuplicateRSVPs()
 	{
-		$service = new LunchSignupService($this->lunch, $this->user);
+		$service = new RSVPCreatorService($this->lunch, $this->user);
 		$service->signUp();
-		$service = new LunchSignupService($this->lunch, $this->user);
+		$service = new RSVPCreatorService($this->lunch, $this->user);
 
 		$this->assertFalse($service->signUp());
 	}

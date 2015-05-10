@@ -1,9 +1,9 @@
 <?php namespace App\Services;
 use App\Lunch;
 use App\User;
-use App\LunchUser;
+use App\RSVP;
 
-class LunchParticipationCancelingService {
+class RSVPChangeService {
     protected $lunch;
     protected $user;
     protected $validation;
@@ -16,7 +16,7 @@ class LunchParticipationCancelingService {
 
     public function cancel()
     {
-        LunchUser::where(['user_id' => $this->user->id, 'lunch_id' => $this->lunch->id])->delete();
+        RSVP::where(['user_id' => $this->user->id, 'lunch_id' => $this->lunch->id])->delete();
         return true;
     }
 }

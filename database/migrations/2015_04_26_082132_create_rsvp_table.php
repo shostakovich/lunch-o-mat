@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateLunchUser extends Migration
+class CreateRSVPTable extends Migration
 {
 
 	/**
@@ -13,7 +13,7 @@ class CreateLunchUser extends Migration
 	 */
 	public function up()
 	{
-		Schema::create('lunch_user', function (Blueprint $table) {
+		Schema::create('rsvps', function (Blueprint $table) {
 			$table->increments('id');
 			$table->unsignedInteger('user_id');
 			$table->unsignedInteger('lunch_id');
@@ -28,7 +28,7 @@ class CreateLunchUser extends Migration
 	 */
 	public function down()
 	{
-		Schema::drop('lunch_user');
+		Schema::drop('rsvps');
 	}
 
 }

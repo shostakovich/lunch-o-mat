@@ -6,7 +6,7 @@ use App\User;
 use Validator;
 use Illuminate\Validation\Validator as Validation;
 
-class LunchSignupValidator {
+class RSVPValidator {
 	protected $validator;
 	protected $lunch;
 	protected $user;
