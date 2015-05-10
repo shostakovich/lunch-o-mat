@@ -7,7 +7,6 @@ use Validator;
 use Illuminate\Validation\Validator as Validation;
 
 class RSVPValidator {
-	protected $validator;
 	protected $lunch;
 	protected $user;
 
@@ -15,44 +14,40 @@ class RSVPValidator {
 	{
 		$this->lunch = $lunch;
 		$this->user = $user;
-
-		$this->validator = Validator::make(
-			[
-				'user_id' => $this->user->id,
-				'lunch_id' => $this->lunch->id
-			],
-			[
-				'user_id' => 'required|numeric',
-				'lunch_id' => 'required|numeric'
-			]
-		);
-
-		$this->validator->after($this->signUpRulesCheck());
 	}
 
-	public function passes()
+	public function passes($attributes)
 	{
-		return $this->validator->passes();
+		return $this->validator($attributes)->passes();
 	}
 
-	public function getErrors()
+	public function getErrors($attributes)
 	{
-		return $this->validator->messages();
+		return $this->validator($attributes)->messages();
 	}
+    protected function validator($attributes)
+    {
+        return Validator::make(
+            $attributes,
+            [
+                'user_id' => 'required|numeric',
+                'lunch_id' => 'required|numeric',
+                'rsvp' => 'required|in:yes,no'
+            ]
+        )->after($this->RSVPRulesCheck());
+    }
 
-	protected function signUpRulesCheck()
-	{
-		return function (Validation $v) {
-			$is_circle_member = $this->lunch->circle->isMember($this->user);
+    protected function RSVPRulesCheck()
+    {
+        return function (Validation $v) {
+            $is_circle_member = $this->lunch->circle->isMember($this->user);
 
-			if (!$is_circle_member)
-				$v->errors()->add('user_id', 'You are not a member of this circle');
+            if (!$is_circle_member)
+                $v->errors()->add('user_id', 'You are not a member of this circle');
 
-			if ($this->lunch->isExpired())
-				$v->errors()->add('lunch_id', 'This Lunch has expired');
+            if ($this->lunch->isExpired())
+                $v->errors()->add('lunch_id', 'This Lunch has expired');
 
-			if ($this->lunch->isSignedUp($this->user))
-				$v->errors()->add('user_id', 'You are already signed up');
-		};
-	}
+        };
+    }
 }

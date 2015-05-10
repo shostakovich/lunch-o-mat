@@ -1,9 +1,10 @@
 <?php
 use Laracasts\TestDummy\Factory;
-use App\Services\RSVPCreatorService;
+use App\Services\RSVPService;
+use App\RSVP;
 use Carbon\Carbon;
 
-class RSVPCreatorServiceTest extends TestCase {
+class RSVPServiceTest extends TestCase {
 	public function setUp()
 	{
 		parent::setUp();
@@ -14,18 +15,18 @@ class RSVPCreatorServiceTest extends TestCase {
 
 	public function testCreatesValidRSVP()
 	{
-		$service = new RSVPCreatorService($this->lunch, $this->user);
+		$service = new RSVPService($this->lunch, $this->user);
 
-		$this->assertTrue($service->signUp());
+		$this->assertTrue($service->rsvp());
 		$this->assertTrue($this->lunch->isSignedUp($this->user));
 	}
 
 	public function testNoRSVPIfUserIsNotInCircle()
 	{
 		$this->lunch = Factory::create('App\Lunch');
-		$service = new RSVPCreatorService($this->lunch, $this->user);
+		$service = new RSVPService($this->lunch, $this->user);
 
-		$this->assertFalse($service->signUp());
+		$this->assertFalse($service->rsvp());
 
 		$errors = $service->getErrors();
 		$this->assertNotEmpty($errors->first('user_id'));
@@ -35,21 +36,25 @@ class RSVPCreatorServiceTest extends TestCase {
 	public function testPreventsRSVPWhenLunchExpired()
 	{
 		$this->lunch->starts_at = Carbon::yesterday();
-		$service = new RSVPCreatorService($this->lunch, $this->user);
+		$service = new RSVPService($this->lunch, $this->user);
 
-		$this->assertFalse($service->signUp());
+		$this->assertFalse($service->rsvp());
 
 		$errors = $service->getErrors();
 		$this->assertNotEmpty($errors->first('lunch_id'));
 		$this->assertFalse($this->lunch->isSignedUp($this->user));
 	}
 
-	public function testPreventsDuplicateRSVPs()
+	public function testChangesExistingRSVP()
 	{
-		$service = new RSVPCreatorService($this->lunch, $this->user);
-		$service->signUp();
-		$service = new RSVPCreatorService($this->lunch, $this->user);
+		$service = new RSVPService($this->lunch, $this->user);
+		$service->rsvp();
+		$service = new RSVPService($this->lunch, $this->user);
 
-		$this->assertFalse($service->signUp());
+        $service->rsvp(false);
+
+
+        $rsvp = RSVP::whereRaw('user_id = ? AND lunch_id = ?', [$this->user->id, $this->lunch->id])->first();
+        $this->assertEquals('no', $rsvp->rsvp);
 	}
 }

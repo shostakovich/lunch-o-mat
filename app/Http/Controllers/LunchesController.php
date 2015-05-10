@@ -1,12 +1,11 @@
 <?php namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
-use App\Services\RSVPChangeService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
 use App\Lunch;
 use App\Services\LunchSchedulingService;
-use App\Services\RSVPCreatorService;
+use App\Services\RSVPService;
 
 class LunchesController extends Controller {
     public function index(Request $request)
@@ -41,9 +40,9 @@ class LunchesController extends Controller {
 		$user = $request->user();
 		$lunch = Lunch::find($id);
 
-		$service = new RSVPCreatorService($lunch, $user);
+		$service = new RSVPService($lunch, $user);
 
-		if($service->signUp())
+		if($service->rsvp())
 			return Redirect::back()->withSuccess('You succesfully signed up!');
 		else
 			return Redirect::back()->withError('Signup failed');
@@ -53,9 +52,9 @@ class LunchesController extends Controller {
     {
         $lunch = Lunch::find($id);
         $user = $request->user();
-        $service = new RSVPChangeService($lunch, $user);
+        $service = new RSVPService($lunch, $user);
 
-       if($service->cancel())
+       if($service->rsvp(false))
            return Redirect::back()->withSuccess('You will not take part in this lunch!');
     }
 }
