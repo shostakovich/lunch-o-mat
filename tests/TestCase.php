@@ -12,6 +12,7 @@ class TestCase extends IntegrationTest {
 
 		$app->make('Illuminate\Contracts\Console\Kernel')->bootstrap();
 
+        Artisan::call('migrate');
 		return $app;
 	}
 

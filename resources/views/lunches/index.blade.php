@@ -44,6 +44,10 @@
                             {!! BootForm::open()->post()->action("/lunches/{$lunch->id}/signup") !!}
                             {!! BootForm::submit('Signup', 'btn-success') !!}
                             {!! BootForm::close() !!}
+                        @else
+                            {!! BootForm::open()->post()->action("/lunches/{$lunch->id}/cancel") !!}
+                            {!! BootForm::submit('Cancel', 'btn-error') !!}
+                            {!! BootForm::close() !!}
                         @endunless
                         </td>
                     </tr>

@@ -1,6 +1,7 @@
 <?php namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
+use App\Services\LunchParticipationCancelingService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
 use App\Lunch;
@@ -29,7 +30,7 @@ class LunchesController extends Controller {
 
         if($service->schedule())
         {
-            return Redirect::to("/lunches")->withNotification('You scheduled a lunch!');
+            return Redirect::to("/lunches")->withSuccess('You scheduled a lunch!');
         } else {
             return Redirect::back()->withErrors($service->getErrors());
         }
@@ -43,11 +44,18 @@ class LunchesController extends Controller {
 		$service = new LunchSignupService($lunch, $user);
 
 		if($service->signUp())
-		{
-			return Redirect::back()->withNotification('You succesfully signed up!');
-		} else {
-			return Redirect::back()->withNotification('Signup failed');
-		}
+			return Redirect::back()->withSuccess('You succesfully signed up!');
+		else
+			return Redirect::back()->withError('Signup failed');
 	}
 
+    public function cancel($id, Request $request)
+    {
+        $lunch = Lunch::find($id);
+        $user = $request->user();
+        $service = new LunchParticipationCancelingService($lunch, $user);
+
+       if($service->cancel())
+           return Redirect::back()->withSuccess('You will not take part in this lunch!');
+    }
 }
