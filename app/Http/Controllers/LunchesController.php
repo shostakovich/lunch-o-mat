@@ -17,7 +17,7 @@ class LunchesController extends Controller {
 
 	public function create(Request $request)
 	{
-		$circles = $request->user()->circles()->lists('name', 'circle_id');
+		$circles = $request->user()->foundedCircles()->lists('name', 'id');
 
 		return view('lunches.create', compact('circles'));
 	}

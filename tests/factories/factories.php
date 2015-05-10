@@ -16,5 +16,11 @@ $factory('App\Lunch', [
 
 $factory('App\Circle', [
     'name' => $faker->text(254),
-    'description' => $faker->text(511)
+    'description' => $faker->text(511),
+    'founder_id' => 'factory:App\User'
+]);
+
+$factory('App\Circle', 'circle_user_input', [
+    'name' => $faker->text(254),
+    'description' => $faker->text(511),
 ]);

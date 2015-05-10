@@ -10,7 +10,6 @@ class CirclesController extends Controller
 {
 	public function __construct()
 	{
-		$this->circleCreator = new CircleCreatorService();
 	}
 
 	public function index()
@@ -26,10 +25,10 @@ class CirclesController extends Controller
 
 	public function store(Request $request)
 	{
-		$circle_created = $this->circleCreator->make($request->input());
+        $service = new CircleCreatorService($request->input(), $request->user());
 
-		if (!$circle_created)
-			return Redirect::back()->withInput()->withErrors($this->circleCreator->getErrors());
+		if (! $service->make())
+			return Redirect::back()->withInput()->withErrors($service->getErrors());
 
 		return redirect('/circles');
 	}

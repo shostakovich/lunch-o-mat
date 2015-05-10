@@ -20,7 +20,7 @@ class CirclesFeaturesTest extends TestCase {
 
 	public function testCreatingACircle()
 	{
-		$circle = Factory::attributesFor('App\Circle');
+		$circle = Factory::attributesFor('circle_user_input');
 
 		$this->login();
 		$this->visit('/circles/create');
