@@ -2,30 +2,38 @@
 
 use Validator;
 use App\Circle;
+use App\User;
 
 class CircleCreatorService
 {
-	protected $errors = [];
+    protected $attributes;
+    protected $user;
+    protected $validation;
 
-	public function make(array $input)
+    public function __construct(Array $attributes, User $user)
+    {
+        $this->attributes = $attributes;
+        $this->user = $user;
+        $this->validation = $this->validator($attributes);
+    }
+
+	public function make()
 	{
-		$validation = $this->validator($input);
-
-		if ($validation->fails()) {
-			$this->errors = $validation->messages();
+		if ($this->validation->fails()) {
 			return false;
 		}
 
 		Circle::create([
-			'name' => $input['name'],
-			'description' => $input['description'],
+			'name' => $this->attributes['name'],
+			'description' => $this->attributes['description'],
+            'founder_id' => $this->user->id
 		]);
 		return true;
 	}
 
 	public function getErrors()
 	{
-		return $this->errors;
+		return $this->validation->messages();
 	}
 
 	public function validator(array $data)

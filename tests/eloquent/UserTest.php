@@ -10,4 +10,12 @@ class UserTest extends TestCase {
 
 		$this->assertEquals(2, $user->circles()->count());
 	}
+
+    public function testUserIsFounderOfManyCircles()
+    {
+        $user = Factory::create('App\User');
+        $circle = Factory::create('App\Circle', ['founder_id' => $user->id]);
+
+        $this->assertEquals($circle, $user->foundedCircles()->first());
+    }
 }

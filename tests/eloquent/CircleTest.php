@@ -19,4 +19,11 @@ class CircleTest extends TestCase {
 
 		$this->assertEquals(2, $circle->members()->count());
 	}
+
+    public function testCircleHasAFounder()
+    {
+        $circle = Factory::create('App\Circle');
+
+        $this->assertEquals(1, $circle->founder()->count());
+    }
 }

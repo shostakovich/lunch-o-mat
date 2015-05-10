@@ -17,4 +17,9 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
 	{
 		return $this->belongsToMany('App\Circle');
 	}
+
+    public function foundedCircles()
+    {
+        return $this->hasMany('App\Circle', 'founder_id');
+    }
 }
