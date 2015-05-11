@@ -1,30 +1,27 @@
 build:
+  environment:
+    variables:
+      DB_USERNAME: root
+      DB_PASSWORD: ~
+      DB_DATABASE: test
+      APP_ENV: local
+
+
   dependencies:
+    override:
+      - composer install --prefer-source --no-interaction
+
+  project_setup:
     before:
       - mkdir -p build/logs
       - mysql -uroot -e 'CREATE DATABASE test'
     override:
-      - composer install --prefer-source --no-interaction
-
-  application:
-    override:
-      -
-        command: php artisan migrate --no-interaction
-        environment:
-          DB_USERNAME: 'root'
-          DB_PASSWORD: ''
-          DB_DATABASE: 'test'
-          APP_ENV: 'local'
+      - php artisan migrate --no-interaction
 
   tests:
     override:
       -
         command: 'vendor/bin/phpunit --coverage-clover=build/logs/clover.xml'
-        environment:
-          DB_USERNAME: 'root'
-          DB_PASSWORD: ''
-          DB_DATABASE: 'test'
-          APP_ENV: 'local'
         coverage:
           file: 'build/logs/clover.xml'
           format: 'php-clover'
