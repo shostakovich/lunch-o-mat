@@ -1,17 +1,13 @@
 <?php namespace App\Services;
 
 use App\User;
+use Illuminate\Support\Facades\Mail;
 use Validator;
 use Illuminate\Contracts\Auth\Registrar as RegistrarContract;
+use App\Mailers\UserMailer;
 
-class Registrar implements RegistrarContract {
-
-	/**
-	 * Get a validator for an incoming registration request.
-	 *
-	 * @param  array  $data
-	 * @return \Illuminate\Contracts\Validation\Validator
-	 */
+class Registrar implements RegistrarContract
+{
 	public function validator(array $data)
 	{
 		return Validator::make($data, [
@@ -21,19 +17,17 @@ class Registrar implements RegistrarContract {
 		]);
 	}
 
-	/**
-	 * Create a new user instance after a valid registration.
-	 *
-	 * @param  array  $data
-	 * @return User
-	 */
 	public function create(array $data)
 	{
-		return User::create([
+		$user = User::create([
 			'name' => $data['name'],
 			'email' => $data['email'],
 			'password' => bcrypt($data['password']),
 		]);
-	}
 
+		$mailer = new UserMailer;
+		$mailer->confirm($user);
+
+		return $user;
+	}
 }
