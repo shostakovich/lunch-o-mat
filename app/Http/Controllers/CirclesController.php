@@ -14,6 +14,13 @@ class CirclesController extends Controller
 		return view('circles.index', compact('circles'));
 	}
 
+	public function show($id, Request $request)
+	{
+		$circle = Circle::findOrFail($id);
+		$user = $request->user();
+		return view('circles.show', compact('circle', 'user'));
+	}
+
 	public function create()
 	{
 		return view('circles.create');

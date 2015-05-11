@@ -9,8 +9,10 @@
     </div>
 
     @foreach($circles as $circle)
-    <div class="panel panel-primary">
-        <div class="panel-heading">{{$circle->name}}</div>
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <a href="/circles/{{$circle->id}}">{{$circle->name}}</a>
+        </div>
         <div class="panel-body">
             <div class="well well-sm">{{$circle->description}}</div>
         </div>

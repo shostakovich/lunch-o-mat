@@ -15,7 +15,7 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
 
 	public function circles()
 	{
-		return $this->belongsToMany('App\Circle');
+		return $this->belongsToMany('App\Circle', 'memberships');
 	}
 
 	public function foundedCircles()

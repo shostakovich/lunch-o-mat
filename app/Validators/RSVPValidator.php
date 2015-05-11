@@ -40,7 +40,7 @@ class RSVPValidator {
 	protected function rsvpRulesCheck()
 	{
 		return function (Validation $v) {
-			$is_circle_member = $this->lunch->circle->isMember($this->user);
+			$is_circle_member = $this->lunch->circle->hasMember($this->user);
 
 			if (!$is_circle_member)
 				$v->errors()->add('user_id', 'You are not a member of this circle');
