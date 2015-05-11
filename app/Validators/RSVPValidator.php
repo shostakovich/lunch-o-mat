@@ -34,10 +34,10 @@ class RSVPValidator {
                 'lunch_id' => 'required|numeric',
                 'rsvp' => 'required|in:yes,no'
             ]
-        )->after($this->RSVPRulesCheck());
+        )->after($this->rsvpRulesCheck());
     }
 
-    protected function RSVPRulesCheck()
+    protected function rsvpRulesCheck()
     {
         return function (Validation $v) {
             $is_circle_member = $this->lunch->circle->isMember($this->user);

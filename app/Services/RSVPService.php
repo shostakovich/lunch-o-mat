@@ -9,6 +9,7 @@ class RSVPService {
 	protected $lunch;
 	protected $user;
 	protected $validation;
+    protected $attributes;
 
 	public function __construct(Lunch $lunch, User $user)
 	{

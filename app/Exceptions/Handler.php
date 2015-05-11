@@ -2,6 +2,7 @@
 
 use Exception;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 
 class Handler extends ExceptionHandler {
 
@@ -24,6 +25,9 @@ class Handler extends ExceptionHandler {
 	 */
 	public function report(Exception $e)
 	{
+		if($e instanceof ModelNotFoundException)
+			abort(404);
+
 		return parent::report($e);
 	}
 

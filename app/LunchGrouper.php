@@ -2,6 +2,8 @@
 class LunchGrouper
 {
     const GROUP_SIZE = 3;
+    protected $participants;
+    protected $groups;
 
     public function __construct(Lunch $lunch)
     {

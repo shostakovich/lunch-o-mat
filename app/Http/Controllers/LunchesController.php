@@ -38,8 +38,7 @@ class LunchesController extends Controller {
 	public function signup($id, Request $request)
 	{
 		$user = $request->user();
-		$lunch = Lunch::find($id);
-
+		$lunch = Lunch::findOrFail($id);
 		$service = new RSVPService($lunch, $user);
 
 		if($service->rsvp())
@@ -50,7 +49,7 @@ class LunchesController extends Controller {
 
     public function cancel($id, Request $request)
     {
-        $lunch = Lunch::find($id);
+        $lunch = Lunch::findOrFail($id);
         $user = $request->user();
         $service = new RSVPService($lunch, $user);
 
