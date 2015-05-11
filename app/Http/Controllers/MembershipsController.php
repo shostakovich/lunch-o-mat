@@ -5,7 +5,6 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Circle;
 use Illuminate\Support\Facades\Redirect;
-
 use App\Services\MembershipCreatorService;
 
 class MembershipsController extends Controller

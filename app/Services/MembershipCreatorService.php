@@ -5,7 +5,7 @@ use App\User;
 
 class MembershipCreatorService
 {
-	protected $cicle;
+	protected $circle;
 	protected $user;
 
 	public function __construct(Circle $circle, User $user)
