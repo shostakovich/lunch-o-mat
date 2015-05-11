@@ -9,7 +9,7 @@ class RSVPService {
 	protected $lunch;
 	protected $user;
 	protected $validation;
-    protected $attributes;
+	protected $attributes;
 
 	public function __construct(Lunch $lunch, User $user)
 	{
@@ -20,14 +20,14 @@ class RSVPService {
 
 	public function rsvp($participating = true)
 	{
-        $rsvp = ($participating) ? 'yes' : 'no';
-        $user_id = $this->user->id;
-        $lunch_id = $this->lunch->id;
+		$rsvp = ($participating) ? 'yes' : 'no';
+		$user_id = $this->user->id;
+		$lunch_id = $this->lunch->id;
 
-        $this->attributes = compact('rsvp', 'lunch_id', 'user_id');
+		$this->attributes = compact('rsvp', 'lunch_id', 'user_id');
 
 		if ($this->validation->passes($this->attributes)) {
-            RSVP::updateOrCreate(compact('lunch_id', 'user_id'), compact('rsvp'));
+			RSVP::updateOrCreate(compact('lunch_id', 'user_id'), compact('rsvp'));
 			return true;
 		} else {
 			return false;

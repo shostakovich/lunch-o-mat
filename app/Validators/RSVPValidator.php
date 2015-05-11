@@ -25,29 +25,29 @@ class RSVPValidator {
 	{
 		return $this->validator($attributes)->messages();
 	}
-    protected function validator($attributes)
-    {
-        return Validator::make(
-            $attributes,
-            [
-                'user_id' => 'required|numeric',
-                'lunch_id' => 'required|numeric',
-                'rsvp' => 'required|in:yes,no'
-            ]
-        )->after($this->rsvpRulesCheck());
-    }
+	protected function validator($attributes)
+	{
+		return Validator::make(
+			$attributes,
+			[
+				'user_id' => 'required|numeric',
+				'lunch_id' => 'required|numeric',
+				'rsvp' => 'required|in:yes,no'
+			]
+		)->after($this->rsvpRulesCheck());
+	}
 
-    protected function rsvpRulesCheck()
-    {
-        return function (Validation $v) {
-            $is_circle_member = $this->lunch->circle->isMember($this->user);
+	protected function rsvpRulesCheck()
+	{
+		return function (Validation $v) {
+			$is_circle_member = $this->lunch->circle->isMember($this->user);
 
-            if (!$is_circle_member)
-                $v->errors()->add('user_id', 'You are not a member of this circle');
+			if (!$is_circle_member)
+				$v->errors()->add('user_id', 'You are not a member of this circle');
 
-            if ($this->lunch->isExpired())
-                $v->errors()->add('lunch_id', 'This Lunch has expired');
+			if ($this->lunch->isExpired())
+				$v->errors()->add('lunch_id', 'This Lunch has expired');
 
-        };
-    }
+		};
+	}
 }
