@@ -27,30 +27,24 @@ class LunchesController extends Controller {
 	{
 		$service = new LunchSchedulingService($request->all(), $request->user());
 
-		if($service->schedule())
-		{
-			return Redirect::to("/lunches")->withSuccess('You scheduled a lunch!');
-		} else {
+		if(!$service->schedule())
 			return Redirect::back()->withErrors($service->getErrors());
-		}
+
+		return Redirect::to("/lunches")->withSuccess('You scheduled a lunch!');
 	}
 
 	public function signup($id, Request $request)
 	{
 		$service = $this->rsvpService($id, $request);
-
-		if ($service->rsvp())
-			return Redirect::back()->withSuccess('You succesfully signed up!');
-		else
-			return Redirect::back()->withError('Signup failed');
+		$service->rsvp();
+		return Redirect::back()->withSuccess('You succesfully signed up!');
 	}
 
 	public function cancel($id, Request $request)
 	{
 		$service = $this->rsvpService($id, $request);
-
-	   if($service->rsvp(false))
-		   return Redirect::back()->withSuccess('You will not take part in this lunch!');
+		$service->rsvp(false);
+		return Redirect::back()->withSuccess('You will not take part in this lunch!');
 	}
 
 	protected function rsvpService($id, Request $request)
