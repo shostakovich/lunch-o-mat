@@ -1,5 +1,6 @@
 <?php namespace App\Http\Controllers;
 
+use App\Membership;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Circle;
@@ -12,6 +13,15 @@ class CirclesController extends Controller
 	{
 		$circles = Circle::all();
 		return view('circles.index', compact('circles'));
+	}
+
+	public function show($id, Request $request)
+	{
+		$circle = Circle::findOrFail($id);
+		$user = $request->user();
+
+		$membership = Membership::where(array('circle_id' => $circle->id, 'user_id' => $user->id))->first();
+		return view('circles.show', compact('circle', 'membership'));
 	}
 
 	public function create()

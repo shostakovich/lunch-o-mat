@@ -8,6 +8,8 @@ Route::group(['middleware' => 'auth'], function() {
 	Route::post('/lunches/{id}/signup', 'LunchesController@signup')->where('id', '[0-9]+');;
 	Route::post('/lunches/{id}/cancel', 'LunchesController@cancel')->where('id', '[0-9]+');;
 
+	Route::resource('/memberships', 'MembershipsController');
+
 	Route::resource('/circles', 'CirclesController');
 	Route::get('/home', 'PagesController@home');
 });

@@ -18,6 +18,14 @@ class CirclesFeaturesTest extends TestCase {
 		$this->andSee($circle->description);
 	}
 
+	public function testCircleHasDetailPage()
+	{
+		$circle = Factory::create('App\Circle');
+
+		$this->login();
+		$this->visit("/circles/{$circle->id}");
+	}
+
 	public function testCreatingACircle()
 	{
 		$circle = Factory::attributesFor('circle_user_input');

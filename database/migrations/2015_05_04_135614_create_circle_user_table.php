@@ -6,7 +6,7 @@ use Illuminate\Database\Migrations\Migration;
 class CreateCircleUserTable extends Migration {
 	public function up()
 	{
-		Schema::create('circle_user', function (Blueprint $table) {
+		Schema::create('memberships', function (Blueprint $table) {
 			$table->increments('id');
 			$table->unsignedInteger('circle_id');
 			$table->unsignedInteger('user_id');
@@ -17,6 +17,6 @@ class CreateCircleUserTable extends Migration {
 
 	public function down()
 	{
-		Schema::drop('circle_user');
+		Schema::drop('memberships');
 	}
 }
