@@ -21,10 +21,10 @@ class Circle extends Model {
 		return $this->belongsToMany('App\User');
 	}
 
-    public function founder()
-    {
-        return $this->belongsTo('App\User', 'founder_id');
-    }
+	public function founder()
+	{
+		return $this->belongsTo('App\User', 'founder_id');
+	}
 
 	public function isMember(User $user)
 	{

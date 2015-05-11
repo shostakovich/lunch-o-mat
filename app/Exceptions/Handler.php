@@ -25,7 +25,7 @@ class Handler extends ExceptionHandler {
 	 */
 	public function report(Exception $e)
 	{
-		if($e instanceof ModelNotFoundException)
+		if ($e instanceof ModelNotFoundException)
 			abort(404);
 
 		return parent::report($e);

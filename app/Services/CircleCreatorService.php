@@ -6,16 +6,16 @@ use App\User;
 
 class CircleCreatorService
 {
-    protected $attributes;
-    protected $user;
-    protected $validation;
+	protected $attributes;
+	protected $user;
+	protected $validation;
 
-    public function __construct(Array $attributes, User $user)
-    {
-        $this->attributes = $attributes;
-        $this->user = $user;
-        $this->validation = $this->validator($attributes);
-    }
+	public function __construct(Array $attributes, User $user)
+	{
+		$this->attributes = $attributes;
+		$this->user = $user;
+		$this->validation = $this->validator($attributes);
+	}
 
 	public function make()
 	{
@@ -26,7 +26,7 @@ class CircleCreatorService
 		Circle::create([
 			'name' => $this->attributes['name'],
 			'description' => $this->attributes['description'],
-            'founder_id' => $this->user->id
+			'founder_id' => $this->user->id
 		]);
 		return true;
 	}

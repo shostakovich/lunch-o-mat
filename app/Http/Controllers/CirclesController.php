@@ -21,9 +21,9 @@ class CirclesController extends Controller
 
 	public function store(Request $request)
 	{
-        $service = new CircleCreatorService($request->all(), $request->user());
+		$service = new CircleCreatorService($request->all(), $request->user());
 
-		if (! $service->make())
+		if (!$service->make())
 			return Redirect::back()->withInput()->withErrors($service->getErrors());
 
 		return redirect('/circles');

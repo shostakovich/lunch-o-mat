@@ -4,8 +4,8 @@ use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 
 class Lunch extends Model {
-    protected $table = 'lunches';
-    protected $fillable = array('starts_at', 'circle_id', 'duration_in_minutes');
+	protected $table = 'lunches';
+	protected $fillable = array('starts_at', 'circle_id', 'duration_in_minutes');
 	protected $dates = ['starts_at'];
 
 	public function scopeUpcoming($query)
@@ -18,20 +18,20 @@ class Lunch extends Model {
 		return $this->starts_at <= Carbon::now()->endOfDay();
 	}
 
-    public function endsAt()
-    {
-        return Carbon::instance($this->starts_at)->addMinutes($this->duration_in_minutes);
-    }
+	public function endsAt()
+	{
+		return Carbon::instance($this->starts_at)->addMinutes($this->duration_in_minutes);
+	}
 
-    public function addParticipant(User $participant)
-    {
-        $this->participants()->save($participant);
-    }
+	public function addParticipant(User $participant)
+	{
+		$this->participants()->save($participant);
+	}
 
-    public function participants()
-    {
-        return $this->belongsToMany('App\User', 'rsvps');
-    }
+	public function participants()
+	{
+		return $this->belongsToMany('App\User', 'rsvps');
+	}
 
 	public function circle()
 	{
