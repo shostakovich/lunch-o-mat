@@ -25,7 +25,7 @@ class LunchesController extends Controller {
 
     public function store(Request $request)
     {
-        $service = new LunchSchedulingService($request->input(), $request->user());
+        $service = new LunchSchedulingService($request->all(), $request->user());
 
         if($service->schedule())
         {
@@ -37,9 +37,7 @@ class LunchesController extends Controller {
 
 	public function signup($id, Request $request)
 	{
-		$user = $request->user();
-		$lunch = Lunch::findOrFail($id);
-		$service = new RSVPService($lunch, $user);
+		$service = $this->rsvpService($id, $request);
 
 		if($service->rsvp())
 			return Redirect::back()->withSuccess('You succesfully signed up!');
@@ -49,11 +47,17 @@ class LunchesController extends Controller {
 
     public function cancel($id, Request $request)
     {
-        $lunch = Lunch::findOrFail($id);
-        $user = $request->user();
-        $service = new RSVPService($lunch, $user);
+	    $service = $this->rsvpService($id, $request);
 
        if($service->rsvp(false))
            return Redirect::back()->withSuccess('You will not take part in this lunch!');
     }
+
+	protected function rsvpService($id, Request $request)
+	{
+		$lunch = Lunch::findOrFail($id);
+		$user = $request->user();
+		$service = new RSVPService($lunch, $user);
+		return $service;
+	}
 }
