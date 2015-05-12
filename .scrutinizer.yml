@@ -5,15 +5,23 @@ build:
       DB_PASSWORD: ~
       DB_DATABASE: test
       APP_ENV: local
+      MAIL_DRIVER: smtp
+      MAIL_HOST: 127.0.0.1
+      MAIL_PORT: 1025
+      MAIL_ENCRYPTION: ''
+      MAIL_FROM_ADDRESS: foobar@example.com
+      MAIL_FROM_NAME: Lunch-o-mat.com
 
 
   dependencies:
     override:
+      - gem install mailcatcher
       - composer install --prefer-source --no-interaction
 
   project_setup:
     before:
       - mkdir -p build/logs
+      - mailcatcher
       - mysql -uroot -e 'CREATE DATABASE test'
     override:
       - php artisan migrate --no-interaction
