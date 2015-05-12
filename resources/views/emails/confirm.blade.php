@@ -1,7 +1,7 @@
 @extends('email')
 
 @section('content')
-    <h1>Welcome, {{ $user->name }}!</h1>
+    <h1>Welcome, {{ $name }}!</h1>
     <p class="lead">Please confirm your registration!</p>
     <p>
         We'd love to send you notifications about your lunch-dates - but we won't do it, unless you confirm your e-mail address.

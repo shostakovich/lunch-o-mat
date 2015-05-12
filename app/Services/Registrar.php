@@ -1,7 +1,6 @@
 <?php namespace App\Services;
 
 use App\User;
-use Illuminate\Support\Facades\Mail;
 use Validator;
 use Illuminate\Contracts\Auth\Registrar as RegistrarContract;
 use App\Mailers\UserMailer;
