@@ -2,7 +2,7 @@
 use Laracasts\TestDummy\Factory;
 
 class UserTest extends TestCase {
-	public function testUserIsMemberOfManyCircles()
+	public function testMemberOfManyCircles()
 	{
 		$user = Factory::create('App\User');
 
@@ -11,11 +11,19 @@ class UserTest extends TestCase {
 		$this->assertEquals(2, $user->circles()->count());
 	}
 
-    public function testUserIsFounderOfManyCircles()
-    {
-        $user = Factory::create('App\User');
-        $circle = Factory::create('App\Circle', ['founder_id' => $user->id]);
+  public function testFounderOfManyCircles()
+  {
+	  $user = Factory::create('App\User');
+	  $circle = Factory::create('App\Circle', ['founder_id' => $user->id]);
 
-        $this->assertEquals($circle, $user->foundedCircles()->first());
-    }
+	  $this->assertEquals($circle, $user->foundedCircles()->first());
+  }
+
+	public function testHasUniqueSecretConfirmationToken()
+	{
+		$user1 = Factory::create('App\User');
+		$user2 = Factory::create('App\User');
+
+		$this->assertNotEquals($user1->confirmationToken(), $user2->confirmationToken());
+	}
 }

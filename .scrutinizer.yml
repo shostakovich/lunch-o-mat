@@ -15,7 +15,7 @@ build:
 
   dependencies:
     override:
-      - gem install mailcatcher
+      - gem install mailcatcher --no-rdoc --no-ri
       - composer install --prefer-source --no-interaction
 
   project_setup:

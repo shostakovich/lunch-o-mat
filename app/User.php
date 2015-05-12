@@ -22,4 +22,10 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
 	{
 		return $this->hasMany('App\Circle', 'founder_id');
 	}
+
+	public function confirmationToken()
+	{
+		$secret = $this->email . $this->created_at . env('USER_CONFIRMATION_SECRET', '');
+		return hash('sha256', $secret);
+	}
 }
