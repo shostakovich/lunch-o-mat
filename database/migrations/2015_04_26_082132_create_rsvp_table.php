@@ -11,7 +11,7 @@ class CreateRsvpTable extends Migration
 			$table->increments('id');
 			$table->unsignedInteger('user_id');
 			$table->unsignedInteger('lunch_id');
-            $table->enum('rsvp', array('yes', 'no'))->default('yes');
+			$table->enum('rsvp', array('yes', 'no'))->default('yes');
 			$table->timestamps();
 		});
 	}
