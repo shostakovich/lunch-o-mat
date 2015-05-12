@@ -15,7 +15,7 @@ class CreateLunchTable extends Migration
 	{
 		Schema::create('lunches', function (Blueprint $table) {
 			$table->increments('id');
-            $table->unsignedInteger('circle_id');
+			$table->unsignedInteger('circle_id');
 			$table->dateTime('starts_at');
 			$table->tinyInteger('duration_in_minutes')->unsigned();
 			$table->timestamps();
